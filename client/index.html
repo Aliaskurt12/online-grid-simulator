@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Lobby</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="mainContainer">
+    <div id="uiToggles">
+        <label><input type="checkbox" id="toggleChat" checked> Show Chat</label><br>
+        <label><input type="checkbox" id="togglePlayerList" checked> Show Player List</label><br>
+        <label><input type="checkbox" id="toggleMusic" checked> Show Music Player</label>
+    </div>
+    <h1>Welcome to the Social Digital Lounge (or the S.D.L)</h1>
+    <input id="nameInput" placeholder="Enter your name" maxlength="16">
+    <button id="createGameBtn">Create Game</button>
+    <input id="gameCodeInput" placeholder="Enter 6-digit code" maxlength="6">
+    <button id="joinGameBtn">Join Game</button>
+    <button id="openWYRBtn">Would You Rather?</button>
+    <button id="toggleTVBtn">📺 SDL Television</button>
+    <div id="status"></div>
+    <canvas id="game" width="1500" height="500"></canvas>
+
+    <!-- Move chat here, outside of #ieu -->
+    <div id="chat">
+        <h2>Social Chat</h2>
+        <div id="chatMessages" style="height:100px;overflow-y:auto;border:1px solid #ccc;margin-bottom:8px;"></div>
+        <input id="chatInput" placeholder="Type a message..." autocomplete="off">
+        <button id="sendChatBtn">Send</button>
+    </div>
+
+
+    <!-- Place the video player here, above the player list -->
+    <div id="bfdiPlayer" style="margin: 24px auto; text-align: center; display: none;">
+     <iframe width="560" height="315"
+  src="https://www.youtube.com/embed/videoseries?list=PL24C837EF6B5B137C"
+  title="BFDI Playlist" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+    </div>
+
+<div id="ieu">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div id="playerList"></div>
+        <button id="leaveIeuBtn" style="display:none; margin-left: 16px;">Leave Game</button>
+    </div>
+</div>
+    <div id="playerPanel"></div>
+    <div id="musicPlayerWidget">
+        <div id="musicPlayerTitle">🎵 Music Player</div>
+        <div id="currentSong"></div>
+        <audio id="audioPlayer" controls style="width: 100%;"></audio>
+        <div style="margin-top: 6px;">
+            <button id="prevSongBtn">⏮</button>
+            <button id="playPauseBtn">▶/⏸</button>
+            <button id="nextSongBtn">⏭</button>
+        </div>
+    </div>
+    <div id="wyrModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span id="closeWYRBtn" class="close">&times;</span>
+        <h2>Would You Rather...</h2>
+        <div id="wyrQuestion"></div>
+        <button id="wyrOptionA"></button>
+        <button id="wyrOptionB"></button>
+      </div>
+    </div>
+  </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+    <script src="musicPlayer.js"></script>
+</body>
+</html>
